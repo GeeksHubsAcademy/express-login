@@ -19,10 +19,12 @@ const SignUpForm = `
 const signUp = event => {
     event.preventDefault();
     const user = {
-        name: event.target.name.value,
-        email: event.target.email.value,
-        password: event.target.password.value
-    }
+            name: event.target.name.value,
+            email: event.target.email.value,
+            password: event.target.password.value
+        }
+        //axios es un cliente http como fetch
+        // hacemos petición POST, primer argumento endpoint y como segundo argumento 
     axios.post('http://localhost:3000/users/signup', user)
 
 }
