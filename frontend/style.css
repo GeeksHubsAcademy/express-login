@@ -1,0 +1,12 @@
+.peliculas {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.pelicula img {
+    max-height: 50vw;
+}

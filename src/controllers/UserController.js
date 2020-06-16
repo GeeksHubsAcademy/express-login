@@ -3,6 +3,14 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const UserController = {
+    getAll(req, res) {
+        User.findAll()
+            .then(users => res.send(users))
+            .catch(error => {
+                console.error(error);
+                res.status(500).send({ message: 'There was a problem trying to create the user' });
+            })
+    },
     async signup(req, res) {
         try {
             //hasheamos la contraseña que nos viene en el body de la request
@@ -26,7 +34,7 @@ const UserController = {
             if (!isMatch) {
                 throw new Error('Wrong Credentials');
             }
-            const token = jwt.sign({ id: user.id }, 'mimamamemima');
+            const token = jwt.sign({ id: user.id }, 'mimamamemima', { expiresIn: '1y' });
             await Token.create({ token, UserId: user.id, revoked: false });
             res.send({
                 // user: {...user.get(), password: undefined },
